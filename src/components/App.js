@@ -1,18 +1,18 @@
+import React, {useState} from "react";
 import video from "../data/video.js";
+import VideoInfo from "./VideoInfo.js";
+import Comments from "./Comments.js";
 
 function App() {
-  console.log("Here's your data:", video);
+  const [isVisible, setVisibility] = useState(false);
+
+  const handleVisibility = () => setVisibility(!isVisible);
 
   return (
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
+      <VideoInfo video={video} handleVisibility={handleVisibility} isVisible={isVisible}/>
+      <hr></hr>
+      {isVisible ? <Comments video={video}/> : null}
     </div>
   );
 }
